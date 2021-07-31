@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>リアルタイム検索</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword">
+    <div v-for="user in users" v-show="hasKeyword(user)">{{ user }}</div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          keyword: '',
+          users: ['佐藤', '山田', '鈴木', '田中']
+        }
+      },
+      methods: {
+        hasKeyword: function(text) {
+          if (this.keyword === '') {
+            return true;
+          }
+          if (text.includes(this.keyword)) {
+            return true;
+          }
+          return false;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
